@@ -23,10 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+Route::get('orders', [OrderController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('users', [UserController::class, 'index']);
-    Route::get('orders', [OrderController::class, 'index']);
     Route::get('logout', [AuthController::class, 'logout']);
 });
