@@ -38,6 +38,9 @@ class AuthController extends Controller
 
         $user = User::where('email', $request['email'])->firstOrfail();
 
+        if($user->email !== $request->email) {
+             return response()->json([ 'message' => 'User not exits'], 401);
+        }
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
